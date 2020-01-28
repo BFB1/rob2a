@@ -1,0 +1,3 @@
+for time_in_seconds in range(1, 4):
+  Drive(forwards, time_in_seconds)
+  Drive(backwards, time_in_seconds)
