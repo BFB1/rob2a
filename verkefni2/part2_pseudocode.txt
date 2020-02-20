@@ -1,0 +1,24 @@
+def Drive(distance, power_modifier):
+
+  encoder['right'], encoder['left'] = 0, 0
+  
+  while(abs(encoder['left']) < distance):
+  
+    if abs(encoder['right']) == abs(encoder['left']):
+      motor['right'] = 80 * power_modifier
+      motor['left'] = 80 * power_modifier
+    else if abs(encoder['right']) > abs(encoder['left']):
+      motor['right'] = 50 * power_modifier
+      motor['left'] = 110 * power_modifier
+    else:
+      motor['right'] = 110 * power_modifier
+      motor['left'] = 50 * power_modifier
+      
+
+
+wait(2)
+for i in range(1, 6):
+  Drive(i * BASEDISTANCE, 1)
+  wait(1)
+  Drive(i * BASEDISTANCE, -1)
+  wait(1)
