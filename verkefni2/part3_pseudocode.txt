@@ -1,0 +1,50 @@
+def Drive(distance, power_modifier):
+
+  encoder['right'], encoder['left'] = 0, 0
+  
+  while(abs(encoder['left']) < distance):
+  
+    if abs(encoder['right']) == abs(encoder['left']):
+      motor['right'] = 80 * power_modifier
+      motor['left'] = 80 * power_modifier
+    else if abs(encoder['right']) > abs(encoder['left']):
+      motor['right'] = 50 * power_modifier
+      motor['left'] = 110 * power_modifier
+    else:
+      motor['right'] = 110 * power_modifier
+      motor['left'] = 50 * power_modifier
+      
+
+def Turn(degrees):
+  
+  encoder['right'], encoder['left'] = 0, 0
+  
+  if 0 < degrees:
+    direction = 1
+    degrees += 45
+  else:
+    direction = -1
+    
+  turn = degrees * BASETURN
+  
+  motor['right'] = 50 * power_modifier
+  motor['left'] = -50 * power_modifier
+  
+  while abs(encoder['right']) < turn:
+    pass
+  
+  motor['right'] = 0
+  motor['left'] = 0
+  
+  
+  
+  sequence = [1, -1, -1, 1, 1, -1, 1, 1, -1, 1, 1, -1, -1, 1]
+  
+  Wait(2)
+  for item in sequence:
+    Drive(BASEDISTANCE, 1)
+    Wait(2)
+    Turn(90 * item)
+    Wait(2)
+
+
