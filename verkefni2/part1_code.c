@@ -21,7 +21,7 @@ void Drive(float power_modifier, int time) {
 }
 
 task main() {
-  
+
   for (float i=1; i < 6; i++) {
   	wait1Msec(2000);
     Drive(0.5, i);
